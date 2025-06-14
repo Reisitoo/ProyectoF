@@ -85,7 +85,7 @@ LinearGradient gradient = new LinearGradient(
         
         layout.setBackground(new Background(new BackgroundFill(gradient, CornerRadii.EMPTY, Insets.EMPTY)));
 
-        Scene scene = new Scene(layout, 800, 600); // Un poco más grande para el nuevo diseño
+        Scene scene = new Scene(layout, 900, 600); // Un poco más grande para el nuevo diseño
         primaryStage.setTitle("Hospital Vitali - Bienvenido");
         primaryStage.setScene(scene);
         primaryStage.show();
