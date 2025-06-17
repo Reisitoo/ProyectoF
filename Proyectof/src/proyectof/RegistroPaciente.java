@@ -1,4 +1,4 @@
-package hospitalvitali;
+package proyectof;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

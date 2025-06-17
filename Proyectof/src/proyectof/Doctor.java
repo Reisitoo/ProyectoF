@@ -1,4 +1,4 @@
-package hospitalvitali;
+package proyectof;
 
 public class Doctor {
     private String nombre;

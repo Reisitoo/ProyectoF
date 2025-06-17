@@ -1,4 +1,4 @@
-package hospitalvitali;
+package proyectof;
 
 import java.util.HashMap;
 import java.util.Map;

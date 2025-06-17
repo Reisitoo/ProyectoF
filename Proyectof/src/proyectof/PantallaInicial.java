@@ -1,4 +1,4 @@
-package hospitalvitali;
+package proyectof;
 
 import javafx.application.Application;
 import javafx.geometry.Insets; // Importar Insets para el padding

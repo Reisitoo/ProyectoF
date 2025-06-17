@@ -1,4 +1,4 @@
-package hospitalvitali;
+package proyectof;
 
 import javafx.geometry.*;
 import javafx.scene.Scene;
