@@ -9,11 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-// --- IMPORTANTE: Ya NO NECESITAS esta importación estática aquí. ---
-// import static hospitalvitali.LoginPaciente.pacientesRegistrados;
-// Porque RegistroPaciente ahora interactúa directamente con BaseDatosSimulada.
-
-public class RegistroPaciente {
+public class Registro {
 
     public void mostrar(Stage primaryStage) {
         Label titulo = new Label("Registro de Paciente");
@@ -70,19 +66,19 @@ public class RegistroPaciente {
             }
 
             // ✅ Se consulta a la BaseDatosSimulada para verificar si el usuario ya existe
-            if (BaseDatosSimulada.existePaciente(usuario)) {
+            if (BaseDatosSimulada.existeUsuario(usuario)) {
                 mostrarAlerta(Alert.AlertType.ERROR, "El usuario '" + usuario + "' ya existe. Por favor, elija otro.");
                 return;
             }
 
             // REGISTRAR EN LA BASE DE DATOS SIMULADA
-            Paciente nuevoPaciente = new Paciente(nombre, usuario, contrasena);
-            BaseDatosSimulada.registrarPaciente(nuevoPaciente);
+            Usuario nuevoUsuario = new Usuario(nombre, usuario, contrasena, email, telefono, false,false);
+            BaseDatosSimulada.registrarUsuario(nuevoUsuario);
 
             mostrarAlerta(Alert.AlertType.INFORMATION, "¡Registro exitoso! Ahora puede iniciar sesión con su nueva cuenta.");
 
             // Navegar de vuelta a la pantalla de login del paciente
-            LoginPaciente login = new LoginPaciente();
+            Login login = new Login();
             login.mostrar(primaryStage);
         });
 
@@ -90,7 +86,7 @@ public class RegistroPaciente {
         btnVolver.setStyle("-fx-background-color: #607D8B; -fx-text-fill: white;"); // Estilo gris
         btnVolver.setMinWidth(200);
         btnVolver.setOnAction(e -> {
-            LoginPaciente login = new LoginPaciente();
+            Login login = new Login();
             login.mostrar(primaryStage);
         });
 
