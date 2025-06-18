@@ -161,6 +161,8 @@ public class Login {
                 mensaje.setTextFill(Color.web(ERROR_COLOR)); // Color de error 
                 return;
             }
+            
+            Sesion.setUsuarioActual(Response); //guardar el inicio de sesion
 
             if (Response.getEsAdmin()) {
 

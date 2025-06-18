@@ -42,8 +42,8 @@ public class MenuPaciente {
 
         // Contenedor del menú lateral
         VBox menuLateral = new VBox(10, lblBienvenida, btnPerfil, btnCitas, btnResultados,
-                                    btnPrescripciones, btnComunicacion, btnRecursosEducativos,
-                                    btnTelemedicina, btnConfiguracion, btnCerrarSesion);
+                btnPrescripciones, btnComunicacion, btnRecursosEducativos,
+                btnTelemedicina, btnConfiguracion, btnCerrarSesion);
         menuLateral.setPadding(new Insets(20));
         menuLateral.setStyle("-fx-background-color: #C8E6C9;");
         menuLateral.setAlignment(Pos.TOP_LEFT);
@@ -57,7 +57,6 @@ public class MenuPaciente {
         // Mostrar un mensaje inicial al cargar el menú
         actualizarContenido(crearPanelMensaje("Seleccione una opción del menú para comenzar.", Color.GRAY));
 
-
         // --- Lógica de los botones ---
         btnPerfil.setOnAction(e -> actualizarContenido(crearPanelPerfilPaciente()));
         btnCitas.setOnAction(e -> actualizarContenido(crearPanelCitasMedicas()));
@@ -67,7 +66,6 @@ public class MenuPaciente {
         btnRecursosEducativos.setOnAction(e -> actualizarContenido(crearPanelRecursosEducativos()));
         btnTelemedicina.setOnAction(e -> actualizarContenido(crearPanelTelemedicina()));
         btnConfiguracion.setOnAction(e -> actualizarContenido(crearPanelConfiguracion()));
-
 
         // Integrar todo con BorderPane
         BorderPane root = new BorderPane();
@@ -96,7 +94,6 @@ public class MenuPaciente {
     }
 
     // --- Métodos para crear los paneles de cada funcionalidad ---
-
     private VBox crearPanelMensaje(String mensaje, Color color) {
         Label label = new Label(mensaje);
         label.setFont(Font.font("Arial", 16));
@@ -108,24 +105,43 @@ public class MenuPaciente {
     }
 
     private VBox crearPanelPerfilPaciente() {
+
+        Usuario usuarioLogueado = Sesion.getUsuarioActual();
+
         Label titulo = new Label("Mi Perfil");
-        titulo.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        titulo.setTextFill(Color.DARKGREEN);
+        titulo.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 26));
+        titulo.setTextFill(Color.web("#2E7D32")); // Verde elegante
 
-        Label lblNombre = new Label("Nombre: [Nombre del Paciente]"); // Aquí se mostraría el nombre real
-        Label lblUsuario = new Label("Usuario: [Usuario del Paciente]"); // Aquí se mostraría el usuario real
-        Label lblEmail = new Label("Email: [Email del Paciente]"); // Aquí se mostraría el email real
-        Label lblNacimiento = new Label("Fecha de Nacimiento: [DD/MM/AAAA]"); // Puedes añadir este dato al Paciente
-        Label lblDireccion = new Label("Dirección: [Dirección del Paciente]"); // Puedes añadir este dato al Paciente
+        // Datos personales
+        Label lblNombre = crearEtiquetaDato("Nombre", usuarioLogueado.getNombreCompleto());
+        Label lblUsuario = crearEtiquetaDato("Usuario", usuarioLogueado.getUsuario());
+        Label lblEmail = crearEtiquetaDato("Email", usuarioLogueado.getEmail());
+        Label lblTelefono = crearEtiquetaDato("Teléfono", usuarioLogueado.getTelefono());
 
-        Button btnEditarPerfil = new Button("Editar Perfil");
-        btnEditarPerfil.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
-        btnEditarPerfil.setOnAction(e -> mostrarAlerta(Alert.AlertType.INFORMATION, "Simulando edición de perfil..."));
+        // Grid para alinear etiquetas
+        GridPane grid = new GridPane();
+        grid.setVgap(12);
+        grid.setHgap(20);
+        grid.setPadding(new Insets(10, 0, 20, 0));
+        grid.add(lblNombre, 0, 0);
+        grid.add(lblUsuario, 0, 1);
+        grid.add(lblEmail, 0, 2);
+        grid.add(lblTelefono, 0, 3);
 
-        VBox panel = new VBox(10, titulo, lblNombre, lblUsuario, lblEmail, lblNacimiento, lblDireccion, btnEditarPerfil);
+        // Contenedor principal
+        VBox panel = new VBox(20, titulo, grid);
         panel.setAlignment(Pos.TOP_LEFT);
-        panel.setPadding(new Insets(20));
+        panel.setPadding(new Insets(30));
+        panel.setStyle("-fx-background-color: #F9F9F9; -fx-border-color: #E0E0E0; -fx-border-width: 1px; -fx-border-radius: 5px;");
         return panel;
+    }
+
+    // Método auxiliar para estilizar etiquetas
+    private Label crearEtiquetaDato(String campo, String valor) {
+        Label label = new Label(campo + ": " + valor);
+        label.setFont(Font.font("Segoe UI", FontWeight.MEDIUM, 14));
+        label.setTextFill(Color.web("#333333"));
+        return label;
     }
 
     private VBox crearPanelCitasMedicas() {
@@ -135,9 +151,9 @@ public class MenuPaciente {
 
         ListView<String> listaCitas = new ListView<>();
         listaCitas.getItems().addAll(
-            "Cita con Dr. Juan Pérez - 15/06/2025 (10:00 AM)",
-            "Cita con Dra. Ana Gómez - 20/06/2025 (03:30 PM)",
-            "Cita con Dr. Carlos Ruiz - 01/07/2025 (09:00 AM)"
+                "Cita con Dr. Juan Pérez - 15/06/2025 (10:00 AM)",
+                "Cita con Dra. Ana Gómez - 20/06/2025 (03:30 PM)",
+                "Cita con Dr. Carlos Ruiz - 01/07/2025 (09:00 AM)"
         );
         listaCitas.setPrefHeight(150); // Altura preferida para la lista
 
@@ -158,9 +174,9 @@ public class MenuPaciente {
 
         VBox resultadosList = new VBox(5);
         resultadosList.getChildren().addAll(
-            new Hyperlink("Resultados de Hemograma Completo - 01/06/2025 (PDF)"),
-            new Hyperlink("Informe de Rayos X de Tórax - 25/05/2025 (PDF)"),
-            new Hyperlink("Análisis de Orina - 10/05/2025 (PDF)")
+                new Hyperlink("Resultados de Hemograma Completo - 01/06/2025 (PDF)"),
+                new Hyperlink("Informe de Rayos X de Tórax - 25/05/2025 (PDF)"),
+                new Hyperlink("Análisis de Orina - 10/05/2025 (PDF)")
         );
         // Simular descarga al hacer clic
         resultadosList.getChildren().forEach(node -> {
@@ -182,15 +198,14 @@ public class MenuPaciente {
 
         VBox prescripcionesList = new VBox(5);
         prescripcionesList.getChildren().addAll(
-            new Label("1. Amoxicilina 500mg - 1 cada 8 horas por 7 días (Dr. Juan Pérez)"),
-            new Label("2. Ibuprofeno 400mg - según necesidad (Dr. Juan Pérez)"),
-            new Label("3. Vitamina D 1000 UI - 1 diaria (Dra. Ana Gómez)")
+                new Label("1. Amoxicilina 500mg - 1 cada 8 horas por 7 días (Dr. Juan Pérez)"),
+                new Label("2. Ibuprofeno 400mg - según necesidad (Dr. Juan Pérez)"),
+                new Label("3. Vitamina D 1000 UI - 1 diaria (Dra. Ana Gómez)")
         );
 
         Button btnVerDetalles = new Button("Ver Detalles Completos");
         btnVerDetalles.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
         btnVerDetalles.setOnAction(e -> mostrarAlerta(Alert.AlertType.INFORMATION, "Simulando vista de detalles de prescripciones..."));
-
 
         VBox panel = new VBox(10, titulo, prescripcionesList, btnVerDetalles);
         panel.setAlignment(Pos.TOP_LEFT);
@@ -258,7 +273,7 @@ public class MenuPaciente {
         titulo.setTextFill(Color.DARKGREEN);
 
         Label lblInstrucciones = new Label(
-            "Conéctate con tu doctor desde casa. Asegúrate de tener una buena conexión a internet."
+                "Conéctate con tu doctor desde casa. Asegúrate de tener una buena conexión a internet."
         );
         lblInstrucciones.setWrapText(true);
 
