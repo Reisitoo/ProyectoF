@@ -13,19 +13,15 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.InnerShadow; // Para Neumorphism
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.paint.CycleMethod;
-import javafx.scene.layout.Priority;
 import javafx.scene.text.TextAlignment;
 
 public class Login {
