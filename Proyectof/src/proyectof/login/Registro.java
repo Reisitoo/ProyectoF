@@ -1,5 +1,8 @@
-package proyectof;
+package proyectof.login;
 
+import proyectof.login.Login;
+import proyectof.base.BaseDatos;
+import proyectof.entities.Usuario;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -88,13 +91,13 @@ public class Registro {
                 return;
             }
 
-            if (BaseDatosSimulada.existeUsuario(usuario)) {
+            if (BaseDatos.existeUsuario(usuario)) {
                 mostrarAlerta(Alert.AlertType.ERROR, "El usuario '" + usuario + "' ya existe. Por favor, elija otro.");
                 return;
             }
 
             Usuario nuevoUsuario = new Usuario(nombre, usuario, contrasena, email, telefono, false, false);
-            BaseDatosSimulada.registrarUsuario(nuevoUsuario);
+            BaseDatos.registrarUsuario(nuevoUsuario);
 
             mostrarAlerta(Alert.AlertType.INFORMATION, "¡Registro exitoso! Ahora puede iniciar sesión con su nueva cuenta.");
             new Login().mostrar(primaryStage);

@@ -1,4 +1,4 @@
-package proyectof;
+package proyectof.entities;
 
 import java.time.LocalDateTime;
 

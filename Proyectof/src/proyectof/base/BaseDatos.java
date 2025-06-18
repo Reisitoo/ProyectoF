@@ -1,11 +1,12 @@
-package proyectof;
+package proyectof.base;
 
+import proyectof.entities.Usuario;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BaseDatosSimulada {
+public class BaseDatos {
 
     private static final Map<String, Usuario> usuariosRegistrados = new HashMap<>();
 

@@ -1,4 +1,4 @@
-package proyectof;
+package proyectof.menu;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight; // Importación necesaria para FontWeight
 import javafx.stage.Stage;
+import proyectof.PantallaInicial;
 
 public class MenuDoctor {
 

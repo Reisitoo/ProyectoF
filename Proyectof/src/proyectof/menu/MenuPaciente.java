@@ -1,5 +1,7 @@
-package proyectof;
+package proyectof.menu;
 
+import proyectof.entities.Sesion;
+import proyectof.entities.Usuario;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight; // <--- AÑADE ESTA LÍNEA
 import javafx.stage.Stage;
+import proyectof.PantallaInicial;
 
 public class MenuPaciente {
 

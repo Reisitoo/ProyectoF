@@ -1,4 +1,6 @@
-package proyectof;
+package proyectof.entities;
+
+import proyectof.entities.Usuario;
 
 public class Sesion {
 

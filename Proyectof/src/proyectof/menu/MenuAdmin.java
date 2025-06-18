@@ -1,8 +1,11 @@
-package proyectof;
+package proyectof.menu;
 
 /**
  * @author Daniel Espinoza
  */
+import proyectof.login.Login;
+import proyectof.base.BaseDatos;
+import proyectof.entities.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -43,7 +46,7 @@ public class MenuAdmin {
         tablaUsuarios.getColumns().addAll(colNombre, colUsuario, colRol);
 
         // Cargar datos
-        usuarios = FXCollections.observableArrayList(BaseDatosSimulada.obtenerUsuarios());
+        usuarios = FXCollections.observableArrayList(BaseDatos.obtenerUsuarios());
         tablaUsuarios.setItems(usuarios);
 
         // Botones de acción
@@ -65,7 +68,7 @@ public class MenuAdmin {
             Usuario seleccionado = tablaUsuarios.getSelectionModel().getSelectedItem();
             if (seleccionado != null) {
                 usuarios.remove(seleccionado);
-                BaseDatosSimulada.eliminarUsuario(seleccionado.getUsuario());
+                BaseDatos.eliminarUsuario(seleccionado.getUsuario());
             } else {
                 mostrarAlerta("Selecciona un usuario para eliminar.");
             }
@@ -172,12 +175,12 @@ public class MenuAdmin {
             Usuario nuevoUsuario = new Usuario(nombre, usuario, pass, correo, telefono, esAdmin, esDoctor);
 
             if (usuarioEditar == null) {
-                if (BaseDatosSimulada.usuarioExiste(usuario)) {
+                if (BaseDatos.usuarioExiste(usuario)) {
                     mostrarAlerta("El nombre de usuario ya existe.");
                     return;
                 }
                 usuarios.add(nuevoUsuario);
-                BaseDatosSimulada.registrarUsuario(nuevoUsuario);
+                BaseDatos.registrarUsuario(nuevoUsuario);
             } else {
                 usuarioEditar.setNombreCompleto(nombre);
                 usuarioEditar.setContrasena(pass);

@@ -1,4 +1,4 @@
-package proyectof;
+package proyectof.entities;
 
 public class Usuario {
 

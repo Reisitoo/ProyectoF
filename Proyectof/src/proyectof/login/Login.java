@@ -1,5 +1,8 @@
-package proyectof;
+package proyectof.login;
 
+import proyectof.base.BaseDatos;
+import proyectof.entities.Sesion;
+import proyectof.entities.Usuario;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -23,6 +26,9 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.text.TextAlignment;
+import proyectof.menu.MenuAdmin;
+import proyectof.menu.MenuDoctor;
+import proyectof.menu.MenuPaciente;
 
 public class Login {
 
@@ -154,7 +160,7 @@ public class Login {
             String usuario = campoUsuario.getText().trim();
             String contrasena = campoContrasena.getText();
 
-            Usuario Response = BaseDatosSimulada.verificarCredenciales(usuario, contrasena);
+            Usuario Response = BaseDatos.verificarCredenciales(usuario, contrasena);
 
             if (Response == null) {
                 mensaje.setText("Usuario o contraseña incorrectos.");
