@@ -165,7 +165,11 @@ public class Login {
             Sesion.setUsuarioActual(Response); //guardar el inicio de sesion
 
             if (Response.getEsAdmin()) {
-
+                System.out.println("Inicio de sesión exitoso para paciente: " + Response.getUsuario());
+                mensaje.setText("¡Bienvenido, " + Response.getNombreCompleto() + "!");
+                mensaje.setTextFill(Color.web(SUCCESS_COLOR)); // Color de éxito
+                MenuAdmin menu = new MenuAdmin();
+                menu.mostrar(primaryStage);
                 return;
             }
 

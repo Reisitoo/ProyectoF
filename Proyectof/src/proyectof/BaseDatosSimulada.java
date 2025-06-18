@@ -1,6 +1,8 @@
 package proyectof;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BaseDatosSimulada {
@@ -58,4 +60,18 @@ public class BaseDatosSimulada {
     public static Usuario obtenerUsuario(String usuario) {
         return usuariosRegistrados.get(usuario);
     }
+
+    // Obtener usuario (si necesitas mostrar datos sin autenticar)
+    public static List<Usuario> obtenerUsuarios() {
+        return new ArrayList<>(usuariosRegistrados.values());
+    }
+
+    public static boolean usuarioExiste(String username) {
+        return usuariosRegistrados.containsKey(username);
+    }
+
+    public static void eliminarUsuario(String username) {
+        usuariosRegistrados.remove(username);
+    }
+
 }
