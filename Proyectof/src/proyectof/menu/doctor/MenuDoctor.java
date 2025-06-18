@@ -1,4 +1,4 @@
-package proyectof.menu;
+package proyectof.menu.doctor;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

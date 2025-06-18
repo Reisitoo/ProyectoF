@@ -27,8 +27,8 @@ import javafx.scene.paint.Stop;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.text.TextAlignment;
 import proyectof.menu.MenuAdmin;
-import proyectof.menu.MenuDoctor;
-import proyectof.menu.MenuPaciente;
+import proyectof.menu.doctor.MenuDoctor;
+import proyectof.menu.paciente.MenuPaciente;
 
 public class Login {
 
