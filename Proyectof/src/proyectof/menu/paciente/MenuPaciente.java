@@ -10,6 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight; // <--- AÑADE ESTA LÍNEA
 import javafx.stage.Stage;
 import proyectof.PantallaInicial;
+import proyectof.menu.paciente.features.crearCita;
 import proyectof.menu.paciente.features.perfil;
 
 public class MenuPaciente {
@@ -61,7 +62,8 @@ public class MenuPaciente {
 
         // --- Lógica de los botones ---
         btnPerfil.setOnAction(e -> actualizarContenido(perfil.crearPanelPerfilPaciente()));
-        btnCitas.setOnAction(e -> actualizarContenido(crearPanelCitasMedicas()));
+        btnCitas.setOnAction(e -> actualizarContenido(crearCita.crearPanelCitasMedicas()));
+        
         btnResultados.setOnAction(e -> actualizarContenido(crearPanelResultadosExamenes()));
         btnPrescripciones.setOnAction(e -> actualizarContenido(crearPanelPrescripciones()));
         btnComunicacion.setOnAction(e -> actualizarContenido(crearPanelComunicacion()));
@@ -102,30 +104,6 @@ public class MenuPaciente {
         label.setTextFill(color);
         VBox panel = new VBox(label);
         panel.setAlignment(Pos.CENTER);
-        panel.setPadding(new Insets(20));
-        return panel;
-    }
-
-
-    private VBox crearPanelCitasMedicas() {
-        Label titulo = new Label("Mis Citas Médicas");
-        titulo.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        titulo.setTextFill(Color.DARKGREEN);
-
-        ListView<String> listaCitas = new ListView<>();
-        listaCitas.getItems().addAll(
-                "Cita con Dr. Juan Pérez - 15/06/2025 (10:00 AM)",
-                "Cita con Dra. Ana Gómez - 20/06/2025 (03:30 PM)",
-                "Cita con Dr. Carlos Ruiz - 01/07/2025 (09:00 AM)"
-        );
-        listaCitas.setPrefHeight(150); // Altura preferida para la lista
-
-        Button btnAgendarNueva = new Button("Agendar Nueva Cita");
-        btnAgendarNueva.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
-        btnAgendarNueva.setOnAction(e -> mostrarAlerta(Alert.AlertType.INFORMATION, "Simulando agendar nueva cita..."));
-
-        VBox panel = new VBox(10, titulo, listaCitas, btnAgendarNueva);
-        panel.setAlignment(Pos.TOP_LEFT);
         panel.setPadding(new Insets(20));
         return panel;
     }
