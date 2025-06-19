@@ -3,16 +3,32 @@ package proyectof.entities;
 import java.time.LocalDateTime;
 
 public class Cita {
-    public String Doctor;
-    public LocalDateTime  Fecha;
-    public String Asunto;
-    public String Comentario;
 
-    public Cita(String Doctor, LocalDateTime Fecha, String Asunto, String Comentario) {
-        this.Doctor = Doctor;
-        this.Fecha = Fecha;
-        this.Asunto = Asunto;
-        this.Comentario = Comentario;
+    private String doctor;
+    private LocalDateTime fecha;
+    private String asunto;
+    private String comentario;
+
+    public Cita(String doctor, LocalDateTime fecha, String asunto, String comentario) {
+        this.doctor = doctor;
+        this.fecha = fecha;
+        this.asunto = asunto;
+        this.comentario = comentario;
+    }
+
+    public String getDoctor() {
+        return doctor;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public String getAsunto() {
+        return asunto;
+    }
+
+    public String getComentario() {
+        return comentario;
     }
 }
-

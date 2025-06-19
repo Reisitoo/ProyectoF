@@ -4,7 +4,6 @@ package proyectof.menu.paciente.features;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -17,35 +16,41 @@ public class perfil {
     public static VBox crearPanelPerfilPaciente() {
         Usuario usuarioLogueado = Sesion.getUsuarioActual();
 
-        Label titulo = new Label("Mi Perfil");
-         titulo.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 26));
-        titulo.setTextFill(Color.web("#2E7D32"));
+        final String BASE_COLOR = "#ECF0F3";
+        final String DARK_TEXT = "#34495E";
 
+        Label titulo = new Label("Mi Perfil");
+        titulo.setFont(Font.font("Roboto", FontWeight.BOLD, 32));
+        titulo.setTextFill(Color.web(DARK_TEXT));
+
+        // Etiquetas de datos con estilo Neumorphism
         Label lblNombre = crearEtiquetaDato("Nombre", usuarioLogueado.getNombreCompleto());
         Label lblUsuario = crearEtiquetaDato("Usuario", usuarioLogueado.getUsuario());
         Label lblEmail = crearEtiquetaDato("Email", usuarioLogueado.getEmail());
         Label lblTelefono = crearEtiquetaDato("Teléfono", usuarioLogueado.getTelefono());
 
-        GridPane grid = new GridPane();
-        grid.setVgap(12);
-        grid.setHgap(20);
-        grid.setPadding(new Insets(10, 0, 20, 0));
-        grid.add(lblNombre, 0, 0);
-        grid.add(lblUsuario, 0, 1);
-        grid.add(lblEmail, 0, 2);
-        grid.add(lblTelefono, 0, 3);
+        VBox datos = new VBox(15, lblNombre, lblUsuario, lblEmail, lblTelefono);
+        datos.setPadding(new Insets(20));
+        datos.setStyle(
+                "-fx-background-color: " + BASE_COLOR + "; " +
+                "-fx-background-radius: 20px; " +
+                "-fx-border-radius: 20px; " +
+                "-fx-effect: innershadow(gaussian, rgba(0,0,0,0.1), 10, 0, 3, 3), " +
+                "              innershadow(gaussian, rgba(255,255,255,0.7), 10, 0, -3, -3);"
+        );
 
-        VBox panel = new VBox(20, titulo, grid);
-        panel.setAlignment(Pos.BASELINE_CENTER.TOP_LEFT);
-        panel.setPadding(new Insets(30));
-        panel.setStyle("-fx-background-color: #F9F9F9; -fx-border-color: #E0E0E0; -fx-border-width: 1px; -fx-border-radius: 5px;");
+        VBox panel = new VBox(30, titulo, datos);
+        panel.setAlignment(Pos.TOP_CENTER);
+        panel.setPadding(new Insets(40));
+        panel.setStyle("-fx-background-color: transparent;");
+
         return panel;
     }
 
     private static Label crearEtiquetaDato(String campo, String valor) {
         Label label = new Label(campo + ": " + valor);
-        label.setFont(Font.font("Segoe UI", FontWeight.MEDIUM, 14));
-        label.setTextFill(Color.web("#333333"));
+        label.setFont(Font.font("Roboto", FontWeight.MEDIUM, 16));
+        label.setTextFill(Color.web("#34495E"));
         return label;
     }
 }
